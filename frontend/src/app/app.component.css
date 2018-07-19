@@ -1,0 +1,31 @@
+.logo {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.search-page {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: initial;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-results {
+  margin-top: 20px;
+  font-size: 0.9em;
+}
+
+.results-table-title {
+}
+
+.results-table th button {
+  background: none !important;
+  color: #007bff;
+  border: none;
+  padding: 0 !important;
+  font: inherit;
+  cursor: pointer;
+}

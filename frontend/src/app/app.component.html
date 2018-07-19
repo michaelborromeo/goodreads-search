@@ -1,17 +1,63 @@
-<div class="app">
-  <input class="form-control"
-         [disabled]="submitting"
-         (keyup.enter)="submitQuery(query.value, selectedPage.value)" #query
-         title="query"/>
-  <button
-    [disabled]="submitting"
-    (click)="submitQuery(query.value, selectedPage.value)">
-    Search
-  </button>
-
-  <select class="form-control" #selectedPage
-          [disabled]="submitting"
-          (onChange)="submitQuery(query.value, selectedPage.value)" title="submit">
-    <option *ngFor="let page of pageList" value="{{page}}">{{page}}</option>
-  </select>
+<div class="app container">
+  <div class="row">
+    <div class="col-12 text-center logo">
+      Goodreads Book Search
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 offset-2">
+      <input class="form-control search-input"
+             value=""
+             [disabled]="submitting"
+             (keyup.enter)="selectedPage.value = 1; submitQuery(query.value, selectedPage.value)" #query
+             title="query"/>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-primary"
+              [disabled]="submitting"
+              (click)="submitQuery(query.value, selectedPage.value)">
+        Search
+      </button>
+    </div>
+  </div>
+  <div class="row" [hidden]="!results || !results.totalResults">
+    <div class="col-12 text-center">
+      <select class="form-control search-page" #selectedPage
+              [disabled]="submitting"
+              (change)="submitQuery(query.value, selectedPage.value)" title="submit">
+        <option *ngFor="let page of pageList" value="{{page}}">Page {{page}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row" *ngIf="!results || !results.totalResults">
+    <div class="col-12 text-center no-results">
+      No search results.
+    </div>
+  </div>
+  <div class="row" *ngIf="results && results.totalResults">
+    <table class="table results-table">
+      <thead>
+      <tr>
+        <th>
+          <button (click)="toggleSortByTitle()">Title
+            {{getSortArrow('title', sortBy.order)}}
+          </button>
+        </th>
+        <th>
+          <button (click)="toggleSortByAuthor()">Author
+            {{getSortArrow('author', sortBy.order)}}
+          </button>
+        </th>
+        <th>Cover</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let work of results.work">
+        <td class="results-table-title">{{work.book[0].title}}</td>
+        <td class="results-table-name">{{work.book[0].author.name}}</td>
+        <td class="results-table-image"><img src="{{work.book[0].imageUrlSmall}}"/></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
