@@ -25,12 +25,27 @@ public class SearchController {
     this.apiService = apiService;
   }
 
+  /**
+   * Handle exceptions for this controller by sending the user the exception message then logging the error.
+   *
+   * @param e
+   * @param request
+   * @return
+   */
   @ExceptionHandler
   public ResponseEntity<ErrorResponse> handleException(RuntimeException e, WebRequest request) {
-    logger.error(e.getMessage());
+    logger.trace(e.getMessage(), e);
     return new ResponseEntity<ErrorResponse>(new ErrorResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
+  /**
+   * Handle incoming requests for book searches and send back responses in JSON.
+   *
+   * @param query
+   * @param page
+   * @return
+   * @throws JAXBException
+   */
   @RequestMapping(value = "/api/search/books", method = RequestMethod.GET,
       produces = {"application/json"})
   public ResponseEntity<GoodreadsResponse> searchBooks(@RequestParam String query, @RequestParam String page) throws JAXBException {

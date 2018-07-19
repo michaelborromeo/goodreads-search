@@ -58,7 +58,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let work of results.work">
+      <tr *ngFor="let work of sortedResults">
         <td class="results-table-title">{{work.book[0].title}}</td>
         <td class="results-table-name">{{work.book[0].author.name}}</td>
         <td class="results-table-image"><img src="{{work.book[0].imageUrlSmall}}"/></td>

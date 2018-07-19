@@ -27,6 +27,11 @@ public class GoodreadsApiService {
   @Value("${goodreads.api.search.endpoint}")
   private String searchApiEndpoint;
 
+  /**
+   * Create the necessary objects to make API calls.
+   *
+   * @throws JAXBException If for whatever reason this exception is thrown then the app will fail on startup.
+   */
   public GoodreadsApiService() throws JAXBException {
     // TODO make beans out of these and inject them into this to enable proper testing of this class
     JAXBContext jaxbContext = JAXBContext.newInstance(GoodreadsResponse.class);
@@ -34,6 +39,14 @@ public class GoodreadsApiService {
     restTemplate = new RestTemplate();
   }
 
+  /**
+   * Call the goodreads API to search books and return the result.
+   *
+   * @param query
+   * @param page
+   * @return The goodreads search response.
+   * @throws JAXBException This exception will be handled in the controller.
+   */
   public GoodreadsResponse getSearchResults(String query, int page) throws JAXBException {
     String uri = this.apiServer + this.searchApiEndpoint + "?q={query}&key={key}&page={page}";
     return (GoodreadsResponse) unmarshaller.unmarshal(

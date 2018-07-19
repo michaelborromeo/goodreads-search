@@ -5,6 +5,10 @@ import lombok.Data;
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
+/**
+ * This object is meant to handle the incoming XML from the Goodreads API and as well it is serialized into JSON
+ * for outgoing search results. Only certain useful fields are mapped by this object.
+ */
 @Data
 @XmlRootElement(name = "GoodreadsResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
