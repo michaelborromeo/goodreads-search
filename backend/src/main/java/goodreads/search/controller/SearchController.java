@@ -34,7 +34,7 @@ public class SearchController {
    */
   @ExceptionHandler
   public ResponseEntity<ErrorResponse> handleException(RuntimeException e, WebRequest request) {
-    logger.trace(e.getMessage(), e);
+    logger.error(e.getMessage(), e);
     return new ResponseEntity<ErrorResponse>(new ErrorResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
