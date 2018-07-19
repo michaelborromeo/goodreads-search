@@ -14,7 +14,7 @@ public final class GoodreadsResponse {
 
   @Data
   @XmlAccessorType(XmlAccessType.FIELD)
-  public static final class GoodreadsSearchResponse {
+  static final class GoodreadsSearchResponse {
     @XmlElement(name = "results-start")
     private int resultsStart;
 
@@ -31,14 +31,14 @@ public final class GoodreadsResponse {
 
   @Data
   @XmlAccessorType(XmlAccessType.FIELD)
-  public static final class GoodreadsWork {
+  static final class GoodreadsWork {
     @XmlElement(name = "best_book")
     private List<GoodreadsBook> book;
   }
 
   @Data
   @XmlAccessorType(XmlAccessType.FIELD)
-  public static final class GoodreadsBook {
+  static final class GoodreadsBook {
     @XmlElement(name = "id")
     private int id;
 
@@ -57,7 +57,7 @@ public final class GoodreadsResponse {
 
   @Data
   @XmlAccessorType(XmlAccessType.FIELD)
-  public static final class GoodreadsAuthor {
+  static final class GoodreadsAuthor {
     @XmlElement(name = "id")
     private int id;
 
