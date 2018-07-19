@@ -30,8 +30,14 @@
     </div>
   </div>
   <div class="row" *ngIf="!results || !results.totalResults">
-    <div class="col-12 text-center no-results">
+    <div class="col-12 text-center no-results" *ngIf="!errorMessage">
       No search results.
+    </div>
+    <div class="col-12 text-center no-results-error" *ngIf="errorMessage">
+      There was a problem with the request. Please try again.
+      <div class="no-results-error-message">
+        {{errorMessage}}
+      </div>
     </div>
   </div>
   <div class="row" *ngIf="results && results.totalResults">

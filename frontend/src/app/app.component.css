@@ -18,6 +18,16 @@
   font-size: 0.9em;
 }
 
+.no-results-error {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: red;
+}
+
+.no-results-error-message {
+  font-size: 0.7em;
+}
+
 .results-table-title {
 }
 

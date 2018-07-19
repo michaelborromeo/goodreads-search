@@ -20,6 +20,7 @@ export class AppComponent {
   pageList: Array<number>;
   submitting: boolean;
   sortBy: any;
+  errorMessage: string;
 
   constructor(private apiService: ApiService) {
     this.results = null;
@@ -40,7 +41,8 @@ export class AppComponent {
         this.submitting = false;
         this.pageList = [1];
         this.results = null;
-        console.error(error.message);
+        this.errorMessage = error.message;
+        console.error(error);
       });
   }
 
