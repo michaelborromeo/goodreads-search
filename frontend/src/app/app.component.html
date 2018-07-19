@@ -1,0 +1,17 @@
+<div class="app">
+  <input class="form-control"
+         [disabled]="submitting"
+         (keyup.enter)="submitQuery(query.value, selectedPage.value)" #query
+         title="query"/>
+  <button
+    [disabled]="submitting"
+    (click)="submitQuery(query.value, selectedPage.value)">
+    Search
+  </button>
+
+  <select class="form-control" #selectedPage
+          [disabled]="submitting"
+          (onChange)="submitQuery(query.value, selectedPage.value)" title="submit">
+    <option *ngFor="let page of pageList" value="{{page}}">{{page}}</option>
+  </select>
+</div>

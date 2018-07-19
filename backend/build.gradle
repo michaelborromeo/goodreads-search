@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE")
+    }
+}
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "org.springframework.boot"
+apply plugin: "war"
+
+jar {
+    baseName = "gs-spring-boot"
+    version = "0.1.0"
+}
+
+war {
+    baseName = "goodreads-search-api"
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile(group: "com.fasterxml.jackson.dataformat", name: "jackson-dataformat-xml", version: "2.9.6")
+    compile(group: "org.apache.commons", name: "commons-lang3", version: "3.4")
+    compile("org.projectlombok:lombok:1.18.0")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "4.0"
+}
+
+task explodedWar(type: Sync) {
+    into "${buildDir}/exploded"
+    with war
+}
